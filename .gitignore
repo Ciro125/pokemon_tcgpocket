@@ -13,3 +13,5 @@ __pycache__/
 
 # Ignorar o arquivo de backup de editor (opcional)
 *~
+
+mainlocal.py
