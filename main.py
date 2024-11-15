@@ -1,19 +1,15 @@
 import streamlit as st
 from pymongo import MongoClient
-from dotenv import load_dotenv
-import os
 from datetime import datetime
 
-# Carregar as variáveis de ambiente do arquivo .env
-load_dotenv()
+# Carregar as variáveis de ambiente do arquivo secrets (usando o st.secrets)
+db_username = st.secrets["DB_USERNAME"]
+db_token = st.secrets["DB_TOKEN"]
 
-# Obter a lista de usuários permitidos e convertê-la para uma lista Python
-allowed_users = os.getenv("ALLOWED_USERS", "").split(",")
+# Obter a lista de usuários permitidos diretamente do secrets
+allowed_users = st.secrets["ALLOWED_USERS"].split(",")
 
 # Conectar ao MongoDB com as credenciais e o banco específico
-db_username = os.getenv("DB_USERNAME", "")  # Certifique-se de adicionar no seu .env
-db_token = os.getenv("DB_TOKEN", "")  # Certifique-se de adicionar no seu .env
-
 uri = f"mongodb+srv://{db_username}:{db_token}@cluster0.sowongv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri)
 db = client["pockemon"]
