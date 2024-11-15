@@ -1,0 +1,15 @@
+# Ignorar a pasta virtual do ambiente (venv)
+venv/
+
+# Ignorar o arquivo .env com variáveis de ambiente
+.env
+
+# Ignorar arquivos de log (opcional, caso você tenha logs)
+*.log
+
+# Ignorar arquivos de cache do Python
+__pycache__/
+*.pyc
+
+# Ignorar o arquivo de backup de editor (opcional)
+*~
