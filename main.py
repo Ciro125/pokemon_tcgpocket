@@ -11,6 +11,9 @@ allowed_users = st.secrets["users"]["ALLOWED_USERS"]
 db = conectar_mongodb(db_username, db_token)
 collection = db["pockemontcg"]
 
+# Cabeçalho do app
+st.title("🃏 Pockemon Estampas Ilustradas Pocket - Registro de Posições")
+
 # Criar abas
 tab1, tab2 = st.tabs(["🃏 Registro", "📊 Analises"])
 
