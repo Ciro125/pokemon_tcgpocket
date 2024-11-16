@@ -56,36 +56,41 @@ if identificacao:
 
         # Botão para inserir dados com emoji
         if st.button("📥 Inserir"):
-            # Simplificando a lógica para calcular "Acertou"
-            acertou_carta = posicao_final_desejada == lugar_selecionado
-
-            # Adiciona o timestamp atual
-            timestamp_atual = datetime.now().isoformat()
-
-            dados = {
-                "Posicao inicial da carta desejada": posicao_inicial_desejada,
-                "Posicao final da carta desejada": posicao_final_desejada,
-                "Carta era EX": carta_ex,
-                "Lugar selecionado": lugar_selecionado,
-                "Acertou": acertou_carta,
-                "Posicao 1": posicoes["Posição 1"],
-                "Posicao 2": posicoes["Posição 2"],
-                "Posicao 3": posicoes["Posição 3"],
-                "Posicao 4": posicoes["Posição 4"],
-                "Posicao 5": posicoes["Posição 5"],
-                "Identificação": identificacao,
-                "DataHoraRegistro": timestamp_atual
-            }
-
-            # Inserir dados no MongoDB
-            collection.insert_one(dados)
-            st.success("🎉 Dados inseridos com sucesso!")
-
-            # Exibir resultado após a lógica
-            if acertou_carta:
-                st.success("🎯 Você acertou a posição da carta!")
+            # Validar posições usando a função
+            valido, mensagem = validar_posicoes(posicoes)
+            if not valido:
+                st.error(mensagem)
             else:
-                st.warning("❌ Você errou a posição da carta.")            
+                # Simplificando a lógica para calcular "Acertou"
+                acertou_carta = posicao_final_desejada == lugar_selecionado
+
+                # Adiciona o timestamp atual
+                timestamp_atual = datetime.now().isoformat()
+
+                dados = {
+                    "Posicao inicial da carta desejada": posicao_inicial_desejada,
+                    "Posicao final da carta desejada": posicao_final_desejada,
+                    "Carta era EX": carta_ex,
+                    "Lugar selecionado": lugar_selecionado,
+                    "Acertou": acertou_carta,
+                    "Posicao 1": posicoes["Posição 1"],
+                    "Posicao 2": posicoes["Posição 2"],
+                    "Posicao 3": posicoes["Posição 3"],
+                    "Posicao 4": posicoes["Posição 4"],
+                    "Posicao 5": posicoes["Posição 5"],
+                    "Identificação": identificacao,
+                    "DataHoraRegistro": timestamp_atual
+                }
+
+                # Inserir dados no MongoDB
+                collection.insert_one(dados)
+                st.success("🎉 Dados inseridos com sucesso!")
+
+                # Exibir resultado após a lógica
+                if acertou_carta:
+                    st.success("🎯 Você acertou a posição da carta!")
+                else:
+                    st.warning("❌ Você errou a posição da carta.")
     else:
         st.error("🚫 Usuário não autorizado!")
 else:
