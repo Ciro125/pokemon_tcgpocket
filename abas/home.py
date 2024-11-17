@@ -21,14 +21,14 @@ def exibir_home(collection, allowed_users):
             with st.container():
                 col1, col2, col3 = st.columns(3)
                 posicoes = {
-                    "Posição 1": col1.number_input("📍 Posição 1", min_value=1, max_value=5, step=1),
-                    "Posição 2": col2.number_input("📍 Posição 2", min_value=1, max_value=5, step=1),
-                    "Posição 3": col3.number_input("📍 Posição 3", min_value=1, max_value=5, step=1)
+                    "Posicao 1": col1.number_input("📍 Posição 1", min_value=1, max_value=5, step=1),
+                    "Posicao 2": col2.number_input("📍 Posição 2", min_value=1, max_value=5, step=1),
+                    "Posicao 3": col3.number_input("📍 Posição 3", min_value=1, max_value=5, step=1)
                 }
 
                 col4, col5 = st.columns(2)
-                posicoes["Posição 4"] = col4.number_input("📍 Posição 4", min_value=1, max_value=5, step=1)
-                posicoes["Posição 5"] = col5.number_input("📍 Posição 5", min_value=1, max_value=5, step=1)
+                posicoes["Posicao 4"] = col4.number_input("📍 Posição 4", min_value=1, max_value=5, step=1)
+                posicoes["Posicao 5"] = col5.number_input("📍 Posição 5", min_value=1, max_value=5, step=1)
 
             # Botão de inserção
             if st.button("📥 Inserir"):
