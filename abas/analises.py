@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import pygwalker as pyg
+from pygwalker.api.streamlit import StreamlitRenderer
 
 def exibir_analises(collection):
     """
@@ -39,5 +41,10 @@ def exibir_analises(collection):
 
         # Exibir o DataFrame
         st.dataframe(df)
+
+        # Abrir a interface interativa
+        pyg_app = StreamlitRenderer(df)
+        pyg_app.explorer()
+
     else:
         st.info("ℹ️ Nenhum dado disponível para análise.")
